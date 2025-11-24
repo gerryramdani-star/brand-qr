@@ -4,101 +4,55 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Brand QR Generator Pro</title>
-    <link rel="icon" type="image/png" href="https://raw.githubusercontent.com/gerryramdani-star/brand-qr/refs/heads/main/asset/logo%20QR%20generator.png">
-    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- QR Code Lib -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcode-generator/1.4.4/qrcode.min.js"></script>
-    <!-- Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap');
         body { font-family: 'Outfit', sans-serif; }
-        
-        /* Dark Scrollbar */
         ::-webkit-scrollbar { width: 6px; height: 6px; }
         ::-webkit-scrollbar-track { background: transparent; }
         ::-webkit-scrollbar-thumb { background: #475569; border-radius: 3px; }
         ::-webkit-scrollbar-thumb:hover { background: #64748b; }
 
         .color-input-wrapper {
-            display: flex;
-            align-items: center;
-            border: 1px solid rgba(255, 255, 255, 0.1); /* Dark border */
-            padding: 0.4rem;
-            border-radius: 0.5rem;
-            background: rgba(255, 255, 255, 0.05); /* Glass bg */
-            cursor: pointer;
-            position: relative;
-            overflow: hidden;
+            display: flex; align-items: center;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 0.4rem; border-radius: 0.5rem;
+            background: rgba(255, 255, 255, 0.05);
+            cursor: pointer; position: relative; overflow: hidden;
         }
-
         input[type="color"] {
-            border: none;
-            width: 100%;
-            height: 32px;
-            cursor: pointer;
-            background: none;
-            padding: 0;
-            position: absolute;
-            top: 0; left: 0; right: 0; bottom: 0;
-            opacity: 0;
+            border: none; width: 100%; height: 32px;
+            cursor: pointer; background: none; padding: 0;
+            position: absolute; top: 0; left: 0; right: 0; bottom: 0; opacity: 0;
         }
-        
-        .color-preview {
-            width: 100%;
-            height: 24px;
-            border-radius: 4px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-        }
-
-        /* Dark Grid Pattern */
+        .color-preview { width: 100%; height: 24px; border-radius: 4px; border: 1px solid rgba(255, 255, 255, 0.2); }
         .preview-bg {
             background-color: #0f172a;
             background-image: linear-gradient(#1e293b 1px, transparent 1px), linear-gradient(to right, #1e293b 1px, transparent 1px);
             background-size: 40px 40px;
         }
-
-        .preset-btn {
-            transition: all 0.2s;
-        }
-        .preset-btn:hover {
-            transform: translateY(-2px);
-            background-color: rgba(255, 255, 255, 0.1);
-            border-color: #6366f1;
-        }
-        
-        /* Glass Utilities */
-        .glass-panel {
-            background: rgba(15, 23, 42, 0.7);
-            backdrop-filter: blur(12px);
-            border-right: 1px solid rgba(255, 255, 255, 0.05);
-        }
-        .glass-card {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-        }
+        .preset-btn { transition: all 0.2s; }
+        .preset-btn:hover { transform: translateY(-2px); background-color: rgba(255, 255, 255, 0.1); border-color: #6366f1; }
+        .glass-panel { background: rgba(15, 23, 42, 0.7); backdrop-filter: blur(12px); border-right: 1px solid rgba(255, 255, 255, 0.05); }
+        .glass-card { background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.05); }
     </style>
 </head>
-
-<!-- BODY: Dark Background Gradient -->
 <body class="bg-[#0f172a] text-slate-300 min-h-screen lg:h-screen flex flex-col lg:overflow-hidden selection:bg-indigo-500 selection:text-white relative">
 
-    <!-- Decorative Glows -->
     <div class="fixed top-0 left-0 w-[500px] h-[500px] bg-indigo-600/10 rounded-full blur-[120px] pointer-events-none"></div>
     <div class="fixed bottom-0 right-0 w-[500px] h-[500px] bg-purple-600/10 rounded-full blur-[120px] pointer-events-none"></div>
 
-    <!-- Header: Glass Style -->
     <header class="bg-slate-900/80 backdrop-blur-md border-b border-white/5 px-6 py-4 shadow-lg z-30 flex-none sticky top-0 lg:relative">
         <div class="max-w-7xl mx-auto flex justify-between items-center relative z-10">
             <div class="flex items-center gap-3">
-                <div class="bg-gradient-to-br from-indigo-600 to-violet-600 text-white p-2 rounded-lg shadow-lg shadow-indigo-500/20">
+                <div class="bg-gradient-to-br from-indigo-600 to-violet-600 text-white p-2 rounded-full shadow-lg shadow-indigo-500/20">
                     <i class="fa-solid fa-qrcode text-xl"></i>
                 </div>
                 <div>
                     <h1 class="text-xl font-bold text-white tracking-tight leading-none flex items-center gap-2">
                         Brand<span class="text-indigo-400">QR</span> 
-                        <!-- PRO Badge Dark Style -->
                         <span class="text-[10px] font-bold bg-indigo-500/20 text-indigo-300 px-2 py-0.5 rounded-full border border-indigo-500/30 tracking-wider shadow-[0_0_10px_-3px_rgba(99,102,241,0.4)]">PRO</span>
                     </h1>
                     <p class="text-xs text-slate-400 font-medium">Custom QR Maker by Om Ger | Ai-Labs</p>
@@ -110,14 +64,10 @@
         </div>
     </header>
 
-    <!-- Main Layout -->
     <main class="flex-1 flex flex-col lg:flex-row lg:min-h-0 relative lg:overflow-hidden z-10">
-        
-        <!-- Sidebar: Glass Panel -->
         <aside class="w-full lg:w-[400px] xl:w-[450px] flex-none glass-panel lg:h-full lg:overflow-y-auto z-20 shadow-2xl scroll-smooth border-r border-white/5">
             <div class="p-6 space-y-8 pb-20">
                 
-                <!-- PRESETS SECTION -->
                 <div class="glass-card p-4 rounded-xl">
                     <h2 class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-3 flex items-center gap-2">
                         <i class="fa-solid fa-wand-magic-sparkles text-indigo-400"></i> Tema Instan
@@ -142,7 +92,6 @@
                     </div>
                 </div>
 
-                <!-- 1. Content Section -->
                 <div class="space-y-4">
                     <h2 class="text-sm font-bold text-slate-400 uppercase tracking-wider flex items-center gap-2 border-b border-white/10 pb-2">
                         <i class="fa-solid fa-link text-indigo-400"></i> Isi Konten
@@ -153,13 +102,11 @@
                     </div>
                 </div>
 
-                <!-- 2. Logo Section -->
                 <div class="space-y-4">
                     <h2 class="text-sm font-bold text-slate-400 uppercase tracking-wider flex items-center gap-2 border-b border-white/10 pb-2">
                         <i class="fa-solid fa-image text-indigo-400"></i> Logo Brand
                     </h2>
                     
-                    <!-- Upload Button -->
                     <div class="relative group">
                         <input type="file" id="logoInput" accept="image/*" class="peer absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10" />
                         <div class="w-full p-4 border-2 border-dashed border-slate-700 rounded-xl bg-slate-800/30 text-center group-hover:border-indigo-500 group-hover:bg-indigo-500/10 transition flex flex-col items-center justify-center gap-2">
@@ -168,26 +115,54 @@
                             <span class="text-xs text-slate-600">(Format PNG / JPG)</span>
                         </div>
                     </div>
+                    
                     <button id="removeLogoBtn" class="hidden w-full py-1 text-xs text-red-400 hover:text-red-300 hover:bg-red-500/20 rounded font-medium transition flex items-center justify-center gap-2">
                         <i class="fa-solid fa-trash-can"></i> Hapus Logo
                     </button>
 
-                    <div>
-                        <div class="flex justify-between text-sm font-semibold text-slate-400 mb-2">
-                            <label>Ukuran Logo</label>
-                            <span class="text-indigo-400"><span id="logoSizeVal">20</span>%</span>
+                    <div id="logoSettingsContainer" class="space-y-4">
+                        <div>
+                            <label class="text-xs font-semibold text-slate-400 uppercase tracking-wide block mb-2">Posisi Logo</label>
+                            <div class="grid grid-cols-2 gap-2">
+                                <label class="cursor-pointer">
+                                    <input type="radio" name="logoPlacement" value="center" class="peer hidden" checked>
+                                    <div class="p-2 rounded-lg border border-white/10 bg-slate-800/50 text-center text-xs text-slate-400 peer-checked:bg-indigo-500/20 peer-checked:border-indigo-500 peer-checked:text-indigo-300 transition hover:bg-slate-700/50">
+                                        Ikon Tengah
+                                    </div>
+                                </label>
+                                <label class="cursor-pointer">
+                                    <input type="radio" name="logoPlacement" value="background" class="peer hidden">
+                                    <div class="p-2 rounded-lg border border-white/10 bg-slate-800/50 text-center text-xs text-slate-400 peer-checked:bg-indigo-500/20 peer-checked:border-indigo-500 peer-checked:text-indigo-300 transition hover:bg-slate-700/50">
+                                        Background
+                                    </div>
+                                </label>
+                            </div>
                         </div>
-                        <input type="range" id="logoSize" min="10" max="30" value="20" class="w-full h-2 bg-slate-700 rounded-lg appearance-none cursor-pointer accent-indigo-500">
+
+                        <div id="centerSizeControl">
+                            <div class="flex justify-between text-sm font-semibold text-slate-400 mb-2">
+                                <label class="text-xs uppercase tracking-wide">Ukuran Logo</label>
+                                <span class="text-indigo-400"><span id="logoSizeVal">20</span>%</span>
+                            </div>
+                            <input type="range" id="logoSize" min="10" max="30" value="20" class="w-full h-2 bg-slate-700 rounded-lg appearance-none cursor-pointer accent-indigo-500">
+                        </div>
+
+                        <div id="bgOpacityControl" class="hidden">
+                            <div class="flex justify-between text-sm font-semibold text-slate-400 mb-2">
+                                <label class="text-xs uppercase tracking-wide">Intensitas (Samar)</label>
+                                <span class="text-indigo-400"><span id="bgOpacityVal">40</span>%</span>
+                            </div>
+                            <input type="range" id="bgOpacity" min="10" max="80" value="40" class="w-full h-2 bg-slate-700 rounded-lg appearance-none cursor-pointer accent-indigo-500">
+                            <p class="text-[10px] text-slate-500 mt-1">Sesuaikan agar tidak terlalu gelap.</p>
+                        </div>
                     </div>
                 </div>
 
-                <!-- 3. Style Section -->
                 <div class="space-y-5">
                     <h2 class="text-sm font-bold text-slate-400 uppercase tracking-wider flex items-center gap-2 border-b border-white/10 pb-2">
                         <i class="fa-solid fa-palette text-indigo-400"></i> Tampilan
                     </h2>
                     
-                    <!-- Background -->
                     <div class="flex items-center justify-between p-2 border border-white/10 rounded-lg bg-white/5 transition">
                         <span class="text-sm font-semibold text-slate-300 ml-2">Background</span>
                         <div class="flex items-center gap-2">
@@ -199,7 +174,6 @@
                         </div>
                     </div>
 
-                    <!-- Body Gradient Control -->
                     <div class="space-y-3 p-3 glass-card rounded-xl">
                         <div class="flex justify-between items-center mb-2">
                             <label class="text-sm font-semibold text-slate-300">Warna Dots</label>
@@ -210,7 +184,6 @@
                         </div>
                         
                         <div class="flex items-center gap-2">
-                            <!-- Color 1 -->
                             <div class="flex-1">
                                 <div class="color-input-wrapper">
                                     <div id="bodyColorPreview" class="color-preview bg-slate-800"></div>
@@ -221,7 +194,6 @@
                             
                             <i class="fa-solid fa-arrow-right text-slate-600 text-xs"></i>
                             
-                            <!-- Color 2 (Gradient End) -->
                             <div class="flex-1 opacity-50 transition" id="gradColorContainer">
                                 <div class="color-input-wrapper">
                                     <div id="gradColorPreview" class="color-preview bg-indigo-600"></div>
@@ -240,7 +212,6 @@
                         </div>
                     </div>
 
-                    <!-- Eye Style -->
                     <div class="bg-indigo-900/20 p-4 rounded-xl border border-indigo-500/20 space-y-4">
                         <div class="flex items-center gap-2 text-indigo-300 text-sm font-bold">
                             <i class="fa-regular fa-eye"></i> Kustomisasi Mata
@@ -281,14 +252,11 @@
             </div>
         </aside>
 
-        <!-- Preview Area -->
         <section class="flex-1 bg-[#020617] preview-bg flex flex-col items-center justify-center relative p-8 min-h-[500px] lg:h-full lg:overflow-y-auto z-10">
             <div class="relative group my-auto">
-                <!-- Canvas Container: Glass & Glow -->
                 <div class="bg-white/5 p-4 sm:p-8 rounded-3xl shadow-2xl border border-white/10 backdrop-blur-xl shadow-indigo-500/10">
                     <canvas id="qrCanvas" width="1024" height="1024" class="w-[280px] h-[280px] sm:w-[350px] sm:h-[350px] lg:w-[450px] lg:h-[450px] object-contain"></canvas>
                 </div>
-                <!-- Badge -->
                 <div class="absolute -bottom-12 left-0 right-0 text-center animate-pulse">
                     <span class="text-xs font-bold tracking-widest bg-slate-900/80 text-indigo-400 px-4 py-1.5 rounded-full border border-indigo-500/30 backdrop-blur-md shadow-lg">
                          LIVE PREVIEW
@@ -299,16 +267,17 @@
     </main>
 
     <script>
-        // --- State Management ---
         const state = {
             text: "https://google.com",
             logoImg: null,
             logoSize: 0.2,
+            logoPlacement: 'center',
+            bgOpacity: 0.4,
             useGradient: false,
             colors: {
                 bg: "#ffffff",
                 bodyStart: "#1e293b",
-                bodyEnd: "#4f46e5", // For gradient
+                bodyEnd: "#4f46e5", 
                 eyeFrame: "#4f46e5",
                 eyeCenter: "#4f46e5"
             },
@@ -318,55 +287,65 @@
             }
         };
 
-        // --- Elements ---
         const canvas = document.getElementById('qrCanvas');
         const ctx = canvas.getContext('2d');
         
-        // Input Elements
         const inputs = {
             text: document.getElementById('qrText'),
             logo: document.getElementById('logoInput'),
             removeLogoBtn: document.getElementById('removeLogoBtn'),
+            logoPlacementRadios: document.getElementsByName('logoPlacement'),
             logoSize: document.getElementById('logoSize'),
             logoSizeVal: document.getElementById('logoSizeVal'),
-            
+            centerSizeControl: document.getElementById('centerSizeControl'),
+            bgOpacity: document.getElementById('bgOpacity'),
+            bgOpacityVal: document.getElementById('bgOpacityVal'),
+            bgOpacityControl: document.getElementById('bgOpacityControl'),
             bgColor: document.getElementById('bgColor'),
             bgColorPreview: document.getElementById('bgColorPreview'),
             bgColorText: document.getElementById('bgColorText'),
-
-            bodyColor: document.getElementById('bodyColor'), // Start
+            bodyColor: document.getElementById('bodyColor'),
             bodyColorPreview: document.getElementById('bodyColorPreview'),
-            
-            gradColor: document.getElementById('gradColor'), // End
+            gradColor: document.getElementById('gradColor'),
             gradColorPreview: document.getElementById('gradColorPreview'),
             gradContainer: document.getElementById('gradColorContainer'),
             useGradient: document.getElementById('useGradient'),
-
             bodyShape: document.getElementById('bodyShape'),
-            
             eyeFrameColor: document.getElementById('eyeFrameColor'),
             eyeFramePreview: document.getElementById('eyeFramePreview'),
-            
             eyeCenterColor: document.getElementById('eyeCenterColor'),
             eyeCenterPreview: document.getElementById('eyeCenterPreview'),
-            
             eyeShape: document.getElementById('eyeShape'),
             uploadText: document.getElementById('uploadText')
         };
 
-        // --- Initialization ---
         function init() {
-            // Text & Logo
             inputs.text.addEventListener('input', (e) => { state.text = e.target.value; generateQR(); });
+            inputs.logo.addEventListener('change', handleLogoUpload);
+            inputs.removeLogoBtn.addEventListener('click', removeLogo);
+
+            Array.from(inputs.logoPlacementRadios).forEach(radio => {
+                radio.addEventListener('change', (e) => {
+                    if(e.target.checked) {
+                        state.logoPlacement = e.target.value;
+                        toggleLogoControls();
+                        generateQR();
+                    }
+                });
+            });
+
             inputs.logoSize.addEventListener('input', (e) => { 
                 state.logoSize = parseInt(e.target.value) / 100; 
                 inputs.logoSizeVal.innerText = e.target.value;
                 generateQR(); 
             });
-            inputs.logo.addEventListener('change', handleLogoUpload);
-            inputs.removeLogoBtn.addEventListener('click', removeLogo);
 
-            // Colors Generic Handler
+            inputs.bgOpacity.addEventListener('input', (e) => {
+                state.bgOpacity = parseInt(e.target.value) / 100;
+                inputs.bgOpacityVal.innerText = e.target.value;
+                generateQR();
+            });
+
             const updateColor = (key, inputKey, previewKey) => {
                 const val = inputs[inputKey].value;
                 state.colors[key] = val;
@@ -381,7 +360,6 @@
             inputs.eyeFrameColor.addEventListener('input', () => updateColor('eyeFrame', 'eyeFrameColor', 'eyeFramePreview'));
             inputs.eyeCenterColor.addEventListener('input', () => updateColor('eyeCenter', 'eyeCenterColor', 'eyeCenterPreview'));
 
-            // Gradient Toggle
             inputs.useGradient.addEventListener('change', (e) => {
                 state.useGradient = e.target.checked;
                 if (state.useGradient) {
@@ -394,21 +372,29 @@
                 generateQR();
             });
 
-            // Shapes
             inputs.bodyShape.addEventListener('change', (e) => { state.shapes.body = e.target.value; generateQR(); });
             inputs.eyeShape.addEventListener('change', (e) => { state.shapes.eye = e.target.value; generateQR(); });
 
-            // Init Previews
             updateColor('bg', 'bgColor', 'bgColorPreview');
             updateColor('bodyStart', 'bodyColor', 'bodyColorPreview');
             updateColor('bodyEnd', 'gradColor', 'gradColorPreview');
             updateColor('eyeFrame', 'eyeFrameColor', 'eyeFramePreview');
             updateColor('eyeCenter', 'eyeCenterColor', 'eyeCenterPreview');
-
+            
+            toggleLogoControls();
             generateQR();
         }
 
-        // --- Presets Logic ---
+        function toggleLogoControls() {
+            if (state.logoPlacement === 'center') {
+                inputs.centerSizeControl.classList.remove('hidden');
+                inputs.bgOpacityControl.classList.add('hidden');
+            } else {
+                inputs.centerSizeControl.classList.add('hidden');
+                inputs.bgOpacityControl.classList.remove('hidden');
+            }
+        }
+
         function applyPreset(name) {
             const presets = {
                 'classic': {
@@ -432,20 +418,16 @@
             const p = presets[name];
             if(!p) return;
 
-            // Update UI Inputs
             inputs.bgColor.value = p.bg;
             inputs.bodyColor.value = p.bodyStart;
             inputs.gradColor.value = p.bodyEnd;
             inputs.eyeFrameColor.value = p.eyeFrame;
             inputs.eyeCenterColor.value = p.eyeCenter;
-            
             inputs.bodyShape.value = p.bodyShape;
             inputs.eyeShape.value = p.eyeShape;
-            
             inputs.useGradient.checked = p.useGradient;
-            inputs.useGradient.dispatchEvent(new Event('change')); // Trigger disable/enable logic
-
-            // Update State & Previews Manually
+            
+            inputs.useGradient.dispatchEvent(new Event('change'));
             inputs.bgColor.dispatchEvent(new Event('input'));
             inputs.bodyColor.dispatchEvent(new Event('input'));
             inputs.gradColor.dispatchEvent(new Event('input'));
@@ -455,12 +437,10 @@
             inputs.eyeShape.dispatchEvent(new Event('change'));
         }
 
-
-        // --- Logo Handling ---
         function handleLogoUpload(e) {
             const file = e.target.files[0];
             if (!file) return;
-            inputs.uploadText.innerText = file.name.substring(0, 20) + (file.name.length > 20 ? '...' : '');
+            inputs.uploadText.innerText = file.name.substring(0, 20) + '...';
             inputs.uploadText.classList.add('text-indigo-400');
             inputs.removeLogoBtn.classList.remove('hidden');
 
@@ -485,7 +465,6 @@
             generateQR();
         }
 
-        // --- Finder Pattern Utils ---
         function isFinderPattern(row, col, moduleCount) {
             if (row < 7 && col < 7) return true; 
             if (row < 7 && col >= moduleCount - 7) return true; 
@@ -494,106 +473,11 @@
         }
 
         function getFinderPart(row, col, moduleCount) {
-            let r = row;
-            let c = col;
+            let r = row; let c = col;
             if (row < 7 && col >= moduleCount - 7) c = col - (moduleCount - 7);
             if (row >= moduleCount - 7 && col < 7) r = row - (moduleCount - 7);
             if (r >= 2 && r <= 4 && c >= 2 && c <= 4) return 'center';
             return 'frame';
-        }
-
-        // --- Main Logic ---
-        function generateQR() {
-            const errorCorrectionLevel = 'H';
-            let qr = null;
-
-            for (let type = 1; type <= 40; type++) {
-                try {
-                    const tempQr = qrcode(type, errorCorrectionLevel);
-                    tempQr.addData(state.text || " "); 
-                    tempQr.make();
-                    qr = tempQr;
-                    break; 
-                } catch (e) { if (type === 40) return; }
-            }
-
-            if (!qr) return;
-
-            const moduleCount = qr.getModuleCount();
-            const canvasSize = 1024; 
-            const moduleSize = canvasSize / moduleCount;
-            
-            // Background
-            ctx.fillStyle = state.colors.bg;
-            ctx.fillRect(0, 0, canvasSize, canvasSize);
-
-            // Prepare Gradient for Body
-            let bodyFill;
-            if (state.useGradient) {
-                const grd = ctx.createLinearGradient(0, 0, canvasSize, canvasSize);
-                grd.addColorStop(0, state.colors.bodyStart);
-                grd.addColorStop(1, state.colors.bodyEnd);
-                bodyFill = grd;
-            } else {
-                bodyFill = state.colors.bodyStart;
-            }
-
-            // Draw Modules
-            for (let r = 0; r < moduleCount; r++) {
-                for (let c = 0; c < moduleCount; c++) {
-                    if (qr.isDark(r, c)) {
-                        const x = c * moduleSize;
-                        const y = r * moduleSize;
-                        const cx = x + moduleSize / 2;
-                        const cy = y + moduleSize / 2;
-                        const size = moduleSize;
-
-                        if (isFinderPattern(r, c, moduleCount)) {
-                            // Eyes - Always Solid Color for clarity
-                            const part = getFinderPart(r, c, moduleCount);
-                            ctx.fillStyle = (part === 'center') ? state.colors.eyeCenter : state.colors.eyeFrame;
-
-                            if (state.shapes.eye === 'square') {
-                                ctx.fillRect(x, y, size + 0.5, size + 0.5);
-                            } else if (state.shapes.eye === 'rounded') {
-                                drawRoundedRect(ctx, x, y, size, size, size * 0.35);
-                            } else if (state.shapes.eye === 'circle') {
-                                ctx.beginPath();
-                                ctx.arc(cx, cy, size/2, 0, Math.PI * 2);
-                                ctx.fill();
-                            }
-                        } else {
-                            // Body - Can be Gradient
-                            ctx.fillStyle = bodyFill;
-
-                            if (state.shapes.body === 'square') {
-                                ctx.fillRect(x, y, size + 0.5, size + 0.5);
-                            } else if (state.shapes.body === 'circle') {
-                                ctx.beginPath();
-                                ctx.arc(cx, cy, (size/2) * 0.85, 0, Math.PI * 2);
-                                ctx.fill();
-                            }
-                        }
-                    }
-                }
-            }
-
-            // Draw Logo
-            if (state.logoImg) {
-                const logoSizePx = canvasSize * state.logoSize;
-                const xPos = (canvasSize - logoSizePx) / 2;
-                const yPos = (canvasSize - logoSizePx) / 2;
-                
-                const padding = moduleSize * 1.5; 
-                ctx.fillStyle = state.colors.bg;
-                drawRoundedRect(ctx, xPos - padding/2, yPos - padding/2, logoSizePx + padding, logoSizePx + padding, 40);
-
-                ctx.save();
-                roundedPath(ctx, xPos, yPos, logoSizePx, logoSizePx, 30);
-                ctx.clip();
-                ctx.drawImage(state.logoImg, xPos, yPos, logoSizePx, logoSizePx);
-                ctx.restore();
-            }
         }
 
         function drawRoundedRect(ctx, x, y, w, h, r) {
@@ -625,6 +509,116 @@
             ctx.closePath();
         }
 
+        function generateQR() {
+            const errorCorrectionLevel = 'H';
+            let qr = null;
+
+            for (let type = 1; type <= 40; type++) {
+                try {
+                    const tempQr = qrcode(type, errorCorrectionLevel);
+                    tempQr.addData(state.text || " "); 
+                    tempQr.make();
+                    qr = tempQr;
+                    break; 
+                } catch (e) { if (type === 40) return; }
+            }
+
+            if (!qr) return;
+
+            // FIX: Add Quiet Zone (Margin) calculations
+            const moduleCount = qr.getModuleCount();
+            const quietZone = 4; // 4 modules margin is standard
+            const totalCount = moduleCount + (quietZone * 2);
+            const canvasSize = 1024; 
+            const moduleSize = canvasSize / totalCount;
+            
+            // 1. Clear & Background
+            ctx.fillStyle = state.colors.bg;
+            ctx.fillRect(0, 0, canvasSize, canvasSize);
+
+            // 2. Draw LOGO BACKGROUND (If enabled)
+            if (state.logoImg && state.logoPlacement === 'background') {
+                ctx.save();
+                ctx.globalAlpha = state.bgOpacity; 
+                ctx.drawImage(state.logoImg, 0, 0, canvasSize, canvasSize);
+                ctx.restore();
+            }
+
+            // 3. Prepare Gradient
+            let bodyFill;
+            if (state.useGradient) {
+                const grd = ctx.createLinearGradient(0, 0, canvasSize, canvasSize);
+                grd.addColorStop(0, state.colors.bodyStart);
+                grd.addColorStop(1, state.colors.bodyEnd);
+                bodyFill = grd;
+            } else {
+                bodyFill = state.colors.bodyStart;
+            }
+
+            // 4. Draw Modules with Offset
+            for (let r = 0; r < moduleCount; r++) {
+                for (let c = 0; c < moduleCount; c++) {
+                    const x = (c + quietZone) * moduleSize;
+                    const y = (r + quietZone) * moduleSize;
+                    const cx = x + moduleSize / 2;
+                    const cy = y + moduleSize / 2;
+                    const size = moduleSize;
+                    
+                    const isFinder = isFinderPattern(r, c, moduleCount);
+
+                    // FIX: Ensure Finder Pattern Contrast by drawing white background behind it
+                    // This prevents background image from messing up the finder patterns
+                    if (isFinder) {
+                        ctx.fillStyle = state.colors.bg;
+                        ctx.fillRect(x, y, size + 0.5, size + 0.5);
+                    }
+
+                    if (qr.isDark(r, c)) {
+                        if (isFinder) {
+                            const part = getFinderPart(r, c, moduleCount);
+                            ctx.fillStyle = (part === 'center') ? state.colors.eyeCenter : state.colors.eyeFrame;
+
+                            if (state.shapes.eye === 'square') {
+                                ctx.fillRect(x, y, size + 0.5, size + 0.5);
+                            } else if (state.shapes.eye === 'rounded') {
+                                drawRoundedRect(ctx, x, y, size, size, size * 0.35);
+                            } else if (state.shapes.eye === 'circle') {
+                                ctx.beginPath();
+                                ctx.arc(cx, cy, size/2, 0, Math.PI * 2);
+                                ctx.fill();
+                            }
+                        } else {
+                            ctx.fillStyle = bodyFill;
+                            if (state.shapes.body === 'square') {
+                                ctx.fillRect(x, y, size + 0.5, size + 0.5);
+                            } else if (state.shapes.body === 'circle') {
+                                ctx.beginPath();
+                                ctx.arc(cx, cy, (size/2) * 0.85, 0, Math.PI * 2);
+                                ctx.fill();
+                            }
+                        }
+                    }
+                }
+            }
+
+            // 5. Draw LOGO CENTER (If enabled)
+            if (state.logoImg && state.logoPlacement === 'center') {
+                const logoSizePx = canvasSize * state.logoSize;
+                const xPos = (canvasSize - logoSizePx) / 2;
+                const yPos = (canvasSize - logoSizePx) / 2;
+                const padding = moduleSize * 1.5; 
+                
+                ctx.fillStyle = state.colors.bg;
+                drawRoundedRect(ctx, xPos - padding/2, yPos - padding/2, logoSizePx + padding, logoSizePx + padding, 40);
+
+                ctx.save();
+                roundedPath(ctx, xPos, yPos, logoSizePx, logoSizePx, 30);
+                ctx.clip();
+                ctx.drawImage(state.logoImg, xPos, yPos, logoSizePx, logoSizePx);
+                ctx.restore();
+            }
+        }
+
         function downloadQR() {
             const link = document.createElement('a');
             link.download = 'Pro-BrandQR.png';
@@ -639,5 +633,4 @@
         }
     </script>
 </body>
-
 </html>
